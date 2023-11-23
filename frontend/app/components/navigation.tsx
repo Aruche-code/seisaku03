@@ -5,7 +5,7 @@ import Link from "next/link";
 //ナビゲーション
 const Navigation = () => {
   return (
-    <header className="border-b py-5">
+    <header className="border-b p-5">
       <div className="text-center">
         <Link href="/" className="font-bold text-xl cursor-pointer">
           AI SaaS

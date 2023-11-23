@@ -19,7 +19,7 @@ const Generate = ({
   return (
     <>
       <div className="border-b-2 border-blue-100 mb-4 font-bold text-lg">
-        Generation
+        生成画像
       </div>
       {loading ? (
         <div className="flex items-center justify-center h-full">

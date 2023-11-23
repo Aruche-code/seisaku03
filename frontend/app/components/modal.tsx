@@ -1,5 +1,5 @@
 import { MouseEvent } from "react";
-import { XMarkIcon } from "@heroicons/react/20/solid";
+import CloseIcon from "@mui/icons-material/Close";
 import { ModalProps } from "./types";
 
 import Image from "next/image";
@@ -38,7 +38,7 @@ const Modal = ({ isOpen, closeModal, modalData }: ModalProps) => {
             className="absolute top-1 right-1 cursor-pointer"
             onClick={closeModal}
           >
-            <XMarkIcon className="h-8 w-8 text-blue-500" />
+            <CloseIcon className="h-8 w-8 text-blue-500" />
           </div>
           <div className="col-span-2 flex justify-center">
             <Image

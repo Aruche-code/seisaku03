@@ -22,34 +22,36 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="flex">
-      <div
-        className={`${
-          open ? "w-40" : "w-20"
-        } bg-dark-purple h-screen p-5 pt-8 relative duration-300`}
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
-      >
-        <ul className="pt-6">
-          {Menus.map((menu, index) => (
-            <Link href={menu.link} key={index}>
-              <li
-                className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4
+    <aside>
+      <div className="flex">
+        <div
+          className={`${
+            open ? "w-40" : "w-20"
+          } bg-dark-purple h-screen p-5 pt-8 relative duration-300`}
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+        >
+          <ul className="pt-6">
+            {Menus.map((menu, index) => (
+              <Link href={menu.link} key={index}>
+                <li
+                  className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4
                 ${menu.gap ? "mt-9" : "mt-2"} 
                 ${pathname === menu.link && "bg-light-white"}`}
-              >
-                {menu.icon}
-                <span
-                  className={`${!open && "hidden"} origin-left duration-200 `}
                 >
-                  {menu.title}
-                </span>
-              </li>
-            </Link>
-          ))}
-        </ul>
+                  {menu.icon}
+                  <span
+                    className={`${!open && "hidden"} origin-left duration-200 `}
+                  >
+                    {menu.title}
+                  </span>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </aside>
   );
 };
 
