@@ -5,8 +5,18 @@ volumes:
 
 services:
   fastapi-stable:
-    build:
+    build: 
       context: ./backend
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu] 
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
     ports:
       - "8000:8000"
     volumes:
