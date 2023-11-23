@@ -1,0 +1,10 @@
+fastapi
+uvicorn 
+diffusers
+transformers
+accelerate
+safetensors
+omegaconf
+pytorch_lightning
+
+
