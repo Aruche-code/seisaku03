@@ -1,6 +1,6 @@
 import torch
 import datetime
-from diffusers import StableDiffusionPipeline
+from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 
 # モデル設定
 # https://huggingface.co/shibal1/anything-v4.5-clone
@@ -9,14 +9,18 @@ from diffusers import StableDiffusionPipeline
 # model_id = "stabilityai/stable-diffusion-2-1"
 model_id = "shibal1/anything-v4.5-clone"
 
-# モデルの読み込み
-pipe = StableDiffusionPipeline.from_pretrained(model_id)
-
 # GPU/CPUチェック
 if torch.cuda.is_available():
     device = "cuda"
 else:
     device = "cpu"
+
+# モデルの読み込み
+pipe = StableDiffusionPipeline.from_pretrained(model_id)
+
+# スケジューラーの設定
+# https://huggingface.co/docs/diffusers/api/schedulers/overview
+pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
 
 
 # デバイスの設定
