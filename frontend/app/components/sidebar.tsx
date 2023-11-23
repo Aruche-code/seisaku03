@@ -13,9 +13,9 @@ const Sidebar = () => {
   const Menus = [
     { title: "home", icon: <HomeIcon />, link: "/", gap: false },
     {
-      title: "codegene",
+      title: "images",
       icon: <IntegrationInstructionsIcon />,
-      link: "/codegene",
+      link: "/images",
       gap: false,
     },
     { title: "setting", icon: <SettingsIcon />, link: "/setting", gap: true },

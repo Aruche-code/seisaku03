@@ -3,9 +3,11 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import service
+import os
 from io import BytesIO
 from zipfile import ZipFile
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -63,3 +65,25 @@ async def generate(payload: PayloadType):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# 静的ファイルのディレクトリをマウント
+app.mount("/outputs", StaticFiles(directory="outputs"), name="outputs")
+
+
+@app.get("/api/images/")
+async def list_images():
+    images = []
+    for file_path in os.listdir("./outputs"):
+        images.append(f"/outputs/{file_path}")
+    return images
+
+
+@app.delete("/api/images/{file_name}/")
+async def delete_image(file_name: str):
+    file_path = os.path.join("outputs", file_name)
+    if os.path.isfile(file_path):
+        os.remove(file_path)
+        return {"status": "success"}
+    else:
+        raise HTTPException(status_code=404, detail="File not found")
