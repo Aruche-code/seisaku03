@@ -20,12 +20,6 @@ app.add_middleware(
 )
 
 
-# ルート
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
 # リクエストペイロード(型定義)
 class PayloadType(BaseModel):
     prompt: str

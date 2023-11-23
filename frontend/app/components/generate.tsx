@@ -40,7 +40,6 @@ const Generate = ({
                 width={740}
                 height={740}
               />
-              {/* Additional JSX or closing tags might follow */}
             </div>
           ))}
         </div>
