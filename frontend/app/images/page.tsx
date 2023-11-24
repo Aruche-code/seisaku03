@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const ImageList = () => {
   const [images, setImages] = useState([]);
@@ -29,7 +30,7 @@ const ImageList = () => {
       {images.map((url, index) => (
         // キーとしてURLだけではなくインデックスを使用
         // URLにクエリパラメータを追加してキャッシュを防ぐ
-        <img
+        <Image
           key={`${url}-${index}`}
           src={`${url}?v=${Date.now()}`}
           alt="Image"

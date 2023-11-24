@@ -12,11 +12,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang="ja">
       <body>
         <div className="flex flex-col h-screen">
-          <Navigation />
+          {/* <Navigation /> */}
           <div className="flex flex-1 overflow-hidden">
             <Sidebar />
-            <div className="flex flex-col flex-1 p-4 overflow-auto">
-              <main className="flex-1 container max-w-screen-xl mx-auto px-5 py-5 ">
+            <div className="flex flex-col flex-1 py-2.5 pr-4 overflow-auto">
+              <main className="flex-1 container max-w-screen-xl mx-auto py-2 pr-4 ">
                 {children}
               </main>
               {/* <footer className="border-t py-5"> */}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import HomeIcon from "@mui/icons-material/Home";
-import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 const Sidebar = () => {
@@ -14,7 +14,7 @@ const Sidebar = () => {
     { title: "home", icon: <HomeIcon />, link: "/", gap: false },
     {
       title: "images",
-      icon: <IntegrationInstructionsIcon />,
+      icon: <InsertPhotoIcon />,
       link: "/images",
       gap: false,
     },
@@ -27,7 +27,7 @@ const Sidebar = () => {
         <div
           className={`${
             open ? "w-40" : "w-20"
-          } bg-dark-purple h-screen p-5 pt-8 relative duration-300`}
+          } h-screen p-5 pt-8 relative duration-300`}
           onMouseEnter={() => setOpen(true)}
           onMouseLeave={() => setOpen(false)}
         >
@@ -35,9 +35,9 @@ const Sidebar = () => {
             {Menus.map((menu, index) => (
               <Link href={menu.link} key={index}>
                 <li
-                  className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4
+                  className={`flex rounded-md p-2 cursor-pointer hover:bg-cyan-100 text-sky-500 text-sm items-center gap-x-4
                 ${menu.gap ? "mt-9" : "mt-2"} 
-                ${pathname === menu.link && "bg-light-white"}`}
+                ${pathname === menu.link && "bg-cyan-100"}`}
                 >
                   {menu.icon}
                   <span

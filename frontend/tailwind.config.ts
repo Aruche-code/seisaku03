@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         "dark-purple": "#081A51",
+        "dark-deep-blue-a": "#4b5368",
+        "dark-deep-blue-b": "#424857",
         "light-white": "rgba(255,255,255,0.17)",
       },
     },
