@@ -3,10 +3,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import service
+import glob
 import os
 from io import BytesIO
 from zipfile import ZipFile
 from fastapi.responses import StreamingResponse
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
@@ -67,24 +69,29 @@ async def generate(payload: PayloadType):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# 静的ファイルのディレクトリをマウント
 app.mount("/outputs", StaticFiles(directory="outputs"), name="outputs")
 
 
 # 画像取得API
-@app.get("/api/images/")
-async def list_images():
+@app.get("/images")
+async def get_images():
+    images_path = "./outputs/*.png"
+    image_paths = glob.glob(images_path)
     images = []
-    for file_path in os.listdir("./outputs"):
-        images.append(f"/outputs/{file_path}")
-    return images
+    for path in image_paths:
+        file_name = os.path.basename(path)
+        images.append({"name": file_name, "path": path})
+
+    return JSONResponse(images)
 
 
-@app.delete("/api/images/{file_name}/")
-async def delete_image(file_name: str):
-    file_path = os.path.join("outputs", file_name)
-    if os.path.isfile(file_path):
-        os.remove(file_path)
-        return {"status": "success"}
+# 画像削除API
+@app.delete("/images/{img_name}")
+async def delete_image(img_name: str):
+    image_path = f"./outputs/{img_name}"
+
+    if os.path.exists(image_path):
+        os.remove(image_path)
+        return {"message": "Image deleted successfully!"}
     else:
-        raise HTTPException(status_code=404, detail="File not found")
+        return {"error": "Image not found!"}
