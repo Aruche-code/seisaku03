@@ -71,6 +71,7 @@ async def generate(payload: PayloadType):
 app.mount("/outputs", StaticFiles(directory="outputs"), name="outputs")
 
 
+# 画像取得API
 @app.get("/api/images/")
 async def list_images():
     images = []
