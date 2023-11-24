@@ -21,7 +21,7 @@ const ImageList = () => {
       }
     }
 
-    const interval = setInterval(fetchImages, 3000); // 3秒ごとに実行
+    const interval = setInterval(fetchImages, 60000); // 60秒ごとに実行
     return () => clearInterval(interval);
   }, []);
 
@@ -30,7 +30,7 @@ const ImageList = () => {
       {images.map((url, index) => (
         // キーとしてURLだけではなくインデックスを使用
         // URLにクエリパラメータを追加してキャッシュを防ぐ
-        <Image
+        <img
           key={`${url}-${index}`}
           src={`${url}?v=${Date.now()}`}
           alt="Image"
